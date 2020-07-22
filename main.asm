@@ -91,36 +91,30 @@ GameLoop:
   LDA $4219
   AND #%00000001
   BNE IncreasePlayerX
-  JMP GameLoopAfterCheckedIncreasePlayerX
 GameLoopAfterCheckedIncreasePlayerX:
   LDA $4219
   AND #%00000010
   BNE DecreasePlayerX
-  JMP GameLoopAfterCheckedDecreasePlayerX
 GameLoopAfterCheckedDecreasePlayerX:
   LDA $4219
   AND #%00001000
   BNE DecreasePlayerY
-  JMP GameLoopAfterCheckedDecreasePlayerY
 GameLoopAfterCheckedDecreasePlayerY:
   LDA $4219
   AND #%00000100
   BNE IncreasePlayerY
-  JMP GameLoopAfterCheckedIncreasePlayerY
 GameLoopAfterCheckedIncreasePlayerY:
   LDA $02
   CMP $00
   BEQ GameLoopContinueToEnemyY
   BCC IncreaseEnemyX
   BCS DecreaseEnemyX
-  JMP GameLoopContinueToEnemyY
 GameLoopContinueToEnemyY:
   LDA $03
   CMP $01
   BEQ GameLoopContinueAfterEnemyY
   BCC IncreaseEnemyY
   BCS DecreaseEnemyY
-  JMP GameLoopContinueAfterEnemyY
 GameLoopContinueAfterEnemyY:
   JMP GameLoop
 IncreasePlayerX:
