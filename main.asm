@@ -2,7 +2,6 @@
 .INCLUDE "InitSNES.asm"
 .BANK 0 SLOT 0
 .ORG 0
-.16BIT
 .SECTION "MainCode"
 SpriteData:
   .INCBIN "main.vram"
@@ -28,6 +27,7 @@ Start:
   STZ $02
   STZ $03
   JMP VRAMLoop
+.16BIT
 VRAMLoop:
   LDA SpriteData, X
   STA $2118
@@ -85,6 +85,7 @@ CGRAMLoop:
   ; Enable NMI VBlank and auto-joypad read
   LDA #$81
   STA $4200
+.8BIT
 GameLoop:
   WAI
   ; To know which bit, go to https://www.chibiakumas.com/6502/platform2.php#LessonP15 and scroll down to "The SNES Hardware" and look at JOY1H.
