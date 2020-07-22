@@ -90,22 +90,22 @@ GameLoop:
   ; To know which bit, go to https://www.chibiakumas.com/6502/platform2.php#LessonP15 and scroll down to "The SNES Hardware" and look at JOY1H.
   LDA $4219
   AND #%00000001 ; That was for this address, but the other addresses are in that website too.
-  BEQ IncreasePlayerX
+  BEQ DecreasePlayerX ; Apparently using AND makes the input backwards or something so I switched to decrease and stuff
   JMP GameLoopAfterCheckedIncreasePlayerX
 GameLoopAfterCheckedIncreasePlayerX:
   LDA $4219
   AND #%00000010
-  BEQ DecreasePlayerX
+  BEQ IncreasePlayerX
   JMP GameLoopAfterCheckedDecreasePlayerX
 GameLoopAfterCheckedDecreasePlayerX:
   LDA $4219
   AND #%00001000
-  BEQ DecreasePlayerY
+  BEQ IncreasePlayerY
   JMP GameLoopAfterCheckedDecreasePlayerY
 GameLoopAfterCheckedDecreasePlayerY:
   LDA $4219
   AND #%00000100
-  BEQ IncreasePlayerY
+  BEQ DecreasePlayerY
   JMP GameLoopAfterCheckedIncreasePlayerY
 GameLoopAfterCheckedIncreasePlayerY:
   LDA $02
