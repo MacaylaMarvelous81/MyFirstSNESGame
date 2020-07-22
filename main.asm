@@ -29,9 +29,6 @@ Start:
   JMP VRAMLoop
 .16BIT
 VRAMLoop:
-  ; Enable 16-bit
-  CLC
-  XCE
   LDA SpriteData, X
   STA $2118
   INX
@@ -43,13 +40,7 @@ VRAMLoop:
   LDA #$80
   STA $2121
   LDX #$00
-  ; Enable 8-bit
-  SEC
-  XCE
 CGRAMLoop:
-  ; Enable 16-bit
-  CLC
-  XCE
   LDA ColorData, X
   STA $2122
   INX
@@ -82,9 +73,6 @@ CGRAMLoop:
   ; Enable screen in full brightness
   LDA #$0F
   STA $2100
-  ; Enable 8-bit
-  SEC
-  XCE
   ; Enable NMI VBlank
   ; LDA #$80
   ; STA $4200
