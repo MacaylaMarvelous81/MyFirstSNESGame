@@ -88,7 +88,7 @@ CGRAMLoop:
 GameLoop:
   WAI
   ; To know which bit, go to https://www.chibiakumas.com/6502/platform2.php#LessonP15 and scroll down to "The SNES Hardware" and look at JOY1H.
-  LDA $4016
+  LDA $4219
   AND #%00000001
   BNE IncreasePlayerX
   JMP GameLoopAfterCheckedIncreasePlayerX
