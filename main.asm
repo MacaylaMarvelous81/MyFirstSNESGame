@@ -88,23 +88,23 @@ CGRAMLoop:
 GameLoop:
   WAI
   ; To know which bit, go to https://www.chibiakumas.com/6502/platform2.php#LessonP15 and scroll down to "The SNES Hardware" and look at JOY1H.
-  LDA #%00000001
-  CMP $4219 ; That was for this address, but the other addresses are in that website too.
+  LDA $4219
+  AND #%00000001 ; That was for this address, but the other addresses are in that website too.
   BEQ IncreasePlayerX
   JMP GameLoopAfterCheckedIncreasePlayerX
 GameLoopAfterCheckedIncreasePlayerX:
-  LDA #%00000010
-  CMP $4219
+  LDA $4219
+  AND #%00000010
   BEQ DecreasePlayerX
   JMP GameLoopAfterCheckedDecreasePlayerX
 GameLoopAfterCheckedDecreasePlayerX:
-  LDA #%00001000
-  CMP $4219
+  LDA $4219
+  AND #%00001000
   BEQ DecreasePlayerY
   JMP GameLoopAfterCheckedDecreasePlayerY
 GameLoopAfterCheckedDecreasePlayerY:
-  LDA #%00000100
-  CMP $4219
+  LDA $4219
+  AND #%00000100
   BEQ IncreasePlayerY
   JMP GameLoopAfterCheckedIncreasePlayerY
 GameLoopAfterCheckedIncreasePlayerY:
