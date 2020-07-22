@@ -35,7 +35,7 @@ VRAMLoop:
   LDA SpriteData, X
   STA $2119
   INX
-  CPX #$80
+  CPX # (2 * 32)
   BCC VRAMLoop
   LDA #$80
   STA $2121
@@ -114,28 +114,32 @@ GameLoopContinueAfterEnemyY:
   JMP GameLoop
 IncreasePlayerX:
   INC $00
+  INC $00
   JMP GameLoopAfterCheckedIncreasePlayerX
 DecreasePlayerX:
+  DEC $00
   DEC $00
   JMP GameLoopAfterCheckedDecreasePlayerX
 DecreasePlayerY:
   DEC $01
+  DEC $01
   JMP GameLoopAfterCheckedDecreasePlayerY
 IncreasePlayerY:
+  INC $01
   INC $01
   JMP GameLoopAfterCheckedIncreasePlayerY
 IncreaseEnemyX:
   INC $02
-  JMP GameLoop
+  JMP GameLoopContinueToEnemyY
 DecreaseEnemyX:
   DEC $02
-  JMP GameLoop
+  JMP GameLoopContinueToEnemyY
 DecreaseEnemyY:
   DEC $03
-  JMP GameLoop
+  JMP GameLoopContinueAfterEnemyY
 IncreaseEnemyY:
   INC $03
-  JMP GameLoop
+  JMP GameLoopContinueAfterEnemyY
 NMIHandler:
   LDA $4210 ; NMI Status
   PHP
@@ -150,6 +154,7 @@ NMIHandler:
   STZ $2104
   STZ $2104
   STA $2102
+  STZ $2103
   LDA $02
   STA $2104
   LDA $03
